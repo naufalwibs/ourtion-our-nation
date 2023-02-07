@@ -27,7 +27,7 @@ function CountryDetail() {
     dispatch(addFavoriteAsync(payload[0]));
   };
 
-  if (loadingDetail || country.length === 0) {
+  if (loadingDetail || !country || country.length === 0) {
     return <LoadingPage />;
   }
 
@@ -120,11 +120,15 @@ function CountryDetail() {
                     </p>
                     <h5 className="mb-0 text-center">Regional Blocs</h5>
                     <p className="small text-center">
-                      {country[0].regionalBlocs.length === 0
+                      {country[0] &&
+                      country[0].regionalBlocs &&
+                      country[0].regionalBlocs.length === 0
                         ? "Not in Allegiance"
                         : country[0].regionalBlocs[0].acronym}
                       ,{" "}
-                      {country[0].regionalBlocs.length === 0
+                      {country[0] &&
+                      country[0].regionalBlocs &&
+                      country[0].regionalBlocs.length === 0
                         ? "No Alias"
                         : country[0].regionalBlocs[0].name}
                     </p>
